@@ -1,14 +1,141 @@
-import { renderHtml } from "./renderHtml";
+const homeHTML = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home • Placeholder</title>
+    <style>
+        :root {
+            --bg: #0f172a; /* slate-900 */
+            --card: #111827; /* gray-900 */
+            --text: #e5e7eb; /* gray-200 */
+            --muted: #94a3b8; /* slate-400 */
+            --accent: #60a5fa; /* blue-400 */
+            --ring: rgba(96,165,250,.35);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+            background: radial-gradient(1000px 600px at 80% -10%, rgba(96,165,250,.12), transparent 60%), radial-gradient(800px 500px at -10% 120%, rgba(16,185,129,.12), transparent 60%), var(--bg);
+            color: var(--text);
+            display: grid;
+            place-items: center;
+        }
+
+        .card {
+            width: min(640px, 92vw);
+            background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(148,163,184,.18);
+            box-shadow: 0 30px 60px rgba(0,0,0,.35);
+            border-radius: 20px;
+            padding: 28px 28px 22px;
+        }
+
+        .logo {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            letter-spacing: .5px;
+            background: linear-gradient(135deg, var(--accent), #22c55e);
+            color: #0b1220;
+            box-shadow: 0 10px 24px rgba(96,165,250,.28);
+            margin-bottom: 14px;
+        }
+
+        h1 {
+            font-size: clamp(22px, 4vw, 32px);
+            margin: 8px 0 6px;
+        }
+
+        p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .actions {
+            margin-top: 18px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            appearance: none;
+            border: 1px solid rgba(148,163,184,.22);
+            background: #0b1220;
+            color: var(--text);
+            padding: 10px 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform .06s ease, box-shadow .2s ease, border-color .2s ease;
+            box-shadow: 0 6px 16px rgba(0,0,0,.25);
+        }
+
+            .btn:hover {
+                transform: translateY(-1px);
+                border-color: var(--accent);
+                box-shadow: 0 10px 24px rgba(96,165,250,.18);
+            }
+
+            .btn.primary {
+                background: linear-gradient(135deg, var(--accent), #22c55e);
+                color: #0b1220;
+                border-color: transparent;
+            }
+
+        footer {
+            margin-top: 18px;
+            font-size: 12px;
+            color: var(--muted);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <main class="card" role="main" aria-labelledby="heading">
+        <div class="logo" aria-hidden="true">H</div>
+        <h1 id="heading">Home</h1>
+        <p>This is a lightweight placeholder. Swap in real content, or keep it as a landing pad while you wire things up.</p>
+        <div class="actions">
+            <button class="btn primary" onclick="alert('Primary action clicked')">Primary Action</button>
+            <button class="btn" onclick="location.reload()">Refresh</button>
+            <button class="btn" onclick="document.querySelector('p').textContent='You can edit this later.'">Edit Text</button>
+        </div>
+        <footer>© <span id="y"></span> • Placeholder</footer>
+    </main>
+    <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>
+
+`;
 
 export default {
-  async fetch(request, env) {
-    const stmt = env.DB.prepare("SELECT * FROM comments LIMIT 3");
-    const { results } = await stmt.all();
+    async fetch(request, env) {
+        const url = new URL(request.url);
+        const method = request.method;
 
-    return new Response(renderHtml(JSON.stringify(results, null, 2)), {
-      headers: {
-        "content-type": "text/html",
-      },
-    });
-  },
+        // Home page
+        if (url.pathname === "/") {
+            return new Response(homeHTML, {
+                headers: { "content-type": "text/html" }
+            });
+        }
+
+        return new Response("Not Found", { status: 404 });
+    },
 } satisfies ExportedHandler<Env>;
