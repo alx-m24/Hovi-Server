@@ -131,10 +131,7 @@ export default {
             const date = formData.get("date")?.toString() || "";
 
             if (date == "2024-12-07") {
-                const filledHtml = WelcomeHTML.replace(
-                    'value=""',
-                    `value="${user_name}"`
-                );
+                const filledHtml = WelcomeHTML.replace("{{user_name}}", user_name);
 
                 return new Response(filledHtml, {
                     headers: { "Content-Type": "text/html;charset=UTF-8" },
