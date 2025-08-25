@@ -111,6 +111,11 @@ const WelcomeHTML = `<!DOCTYPE html>
 </body>
 </html>`;
 
+const displayNames: Record<string, string> = {
+    "User1": "Alex",
+    "User2": "Hovi"
+};
+
 export default {
     async fetch(request: Request, env: Env) {
         const url = new URL(request.url);
@@ -124,7 +129,8 @@ export default {
         // Step 1: register
         if (url.pathname === "/login" && request.method === "POST") {
             const formData = await request.formData();
-            const user_name = formData.get("user")?.toString() || "";
+            const user = formData.get("user")?.toString() || "";
+            const user_name = displayNames[user] || "Unknown";
             const date = formData.get("date")?.toString() || "";
 
             if (date == "2024-12-07") {
