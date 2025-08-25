@@ -1,7 +1,7 @@
 {
   "compatibility_date": "2025-04-01",
   "main": "src/index.ts",
-  "name": "d1-template",
+  "name": "hovi-server",
   "upload_source_maps": true,
   "d1_databases": [
     {
