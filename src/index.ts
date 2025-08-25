@@ -1,141 +1,171 @@
-const homeHTML = `
-<!DOCTYPE html>
-<html lang="en">
+const LoginHTML = `<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Home • Placeholder</title>
+    <title>Login</title>
     <style>
-        :root {
-            --bg: #0f172a; /* slate-900 */
-            --card: #111827; /* gray-900 */
-            --text: #e5e7eb; /* gray-200 */
-            --muted: #94a3b8; /* slate-400 */
-            --accent: #60a5fa; /* blue-400 */
-            --ring: rgba(96,165,250,.35);
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100%;
-        }
-
         body {
-            margin: 0;
-            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-            background: radial-gradient(1000px 600px at 80% -10%, rgba(96,165,250,.12), transparent 60%), radial-gradient(800px 500px at -10% 120%, rgba(16,185,129,.12), transparent 60%), var(--bg);
-            color: var(--text);
-            display: grid;
-            place-items: center;
-        }
-
-        .card {
-            width: min(640px, 92vw);
-            background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-            backdrop-filter: blur(6px);
-            border: 1px solid rgba(148,163,184,.18);
-            box-shadow: 0 30px 60px rgba(0,0,0,.35);
-            border-radius: 20px;
-            padding: 28px 28px 22px;
-        }
-
-        .logo {
-            width: 56px;
-            height: 56px;
-            border-radius: 14px;
-            display: grid;
-            place-items: center;
-            font-weight: 800;
-            letter-spacing: .5px;
-            background: linear-gradient(135deg, var(--accent), #22c55e);
-            color: #0b1220;
-            box-shadow: 0 10px 24px rgba(96,165,250,.28);
-            margin-bottom: 14px;
-        }
-
-        h1 {
-            font-size: clamp(22px, 4vw, 32px);
-            margin: 8px 0 6px;
-        }
-
-        p {
-            margin: 0;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        .actions {
-            margin-top: 18px;
+            font-family: Arial, sans-serif;
             display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            background: #f0f2f5;
         }
 
-        .btn {
-            appearance: none;
-            border: 1px solid rgba(148,163,184,.22);
-            background: #0b1220;
-            color: var(--text);
-            padding: 10px 14px;
+        .login-box {
+            background: white;
+            padding: 2rem;
             border-radius: 12px;
-            cursor: pointer;
-            transition: transform .06s ease, box-shadow .2s ease, border-color .2s ease;
-            box-shadow: 0 6px 16px rgba(0,0,0,.25);
-        }
-
-            .btn:hover {
-                transform: translateY(-1px);
-                border-color: var(--accent);
-                box-shadow: 0 10px 24px rgba(96,165,250,.18);
-            }
-
-            .btn.primary {
-                background: linear-gradient(135deg, var(--accent), #22c55e);
-                color: #0b1220;
-                border-color: transparent;
-            }
-
-        footer {
-            margin-top: 18px;
-            font-size: 12px;
-            color: var(--muted);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 300px;
             text-align: center;
         }
+
+        select, input, button {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background: #0056b3;
+            }
     </style>
 </head>
 <body>
-    <main class="card" role="main" aria-labelledby="heading">
-        <div class="logo" aria-hidden="true">H</div>
-        <h1 id="heading">Home</h1>
-        <p>This is a lightweight placeholder. Swap in real content, or keep it as a landing pad while you wire things up.</p>
-        <div class="actions">
-            <button class="btn primary" onclick="alert('Primary action clicked')">Primary Action</button>
-            <button class="btn" onclick="location.reload()">Refresh</button>
-            <button class="btn" onclick="document.querySelector('p').textContent='You can edit this later.'">Edit Text</button>
-        </div>
-        <footer>© <span id="y"></span> • Placeholder</footer>
-    </main>
-    <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+    <div class="login-box">
+        <h2>Login</h2>
+        <form action="/login" method="POST">
+            <label>Select User:</label>
+            <select name="user" required>
+                <option value="User1">Alex</option>
+                <option value="User2">Hovi</option>
+            </select>
+            <p/>
+            <label>Select Correct Date:</label>
+            <input type="date" name="date" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
 </body>
-</html>
+</html>`;
 
-`;
+const WelcomeHTML = `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Additional Info</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://tinyurl.com/3rnepj4r">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            background: #f0f2f5;
+        }
+
+        .login-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        select, input, button {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <h1>Additional Information</h1>
+    <p>Welcome {{name}}</p>
+</body>
+</html>`;
+
+const ADMIN_PASSWORD = "SuperSecretPassword1234";
 
 export default {
-    async fetch(request, env) {
+    async fetch(request: Request, env: Env) {
         const url = new URL(request.url);
-        const method = request.method;
 
-        // Home page
         if (url.pathname === "/") {
-            return new Response(homeHTML, {
-                headers: { "content-type": "text/html" }
+            return new Response(LoginHTML, {
+                headers: { "Content-Type": "text/html;charset=UTF-8" },
             });
         }
 
-        return new Response("Not Found", { status: 404 });
-    },
+        // Step 1: register
+        if (url.pathname === "/login" && request.method === "POST") {
+            const formData = await request.formData();
+            const user_name = formData.get("user")?.toString() || "";
+            const date = formData.get("date")?.toString() || "";
+
+            if (date == "2024-12-07") {
+                const filledHtml = additionalInfoHtml.replace(
+                    'value=""',
+                    `value="${user_name}"`
+                );
+
+                return new Response(filledHtml, {
+                    headers: { "Content-Type": "text/html;charset=UTF-8" },
+                });
+            }
+
+            return new Response("Unauthorized", {
+                headers: { "Content-Type": "text/plain" }
+            });
+        }
+
+        // Step 2: additional info
+        if (url.pathname === "/additional" && request.method === "POST") {
+            const formData = await request.formData();
+            const email = formData.get("email")?.toString() || "";
+            const diet = formData.get("diet")?.toString() || "";
+            const allergies = formData.get("allergies")?.toString() || "";
+            const info = formData.get("info")?.toString() || "";
+
+            // Update the registration with additional info
+            await env.DB.prepare(
+                "UPDATE registrations SET diet = ?, allergies = ?, extra_info = ? WHERE email = ?"
+            )
+                .bind(diet, allergies, info, email)
+                .run();
+
+            return new Response(`Thank you! Your additional information has been saved.`, {
+                headers: { "Content-Type": "text/plain" },
+            });
+        }
+
+        return new Response("Not found", { status: 404 });
+    }
 } satisfies ExportedHandler<Env>;
