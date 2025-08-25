@@ -63,9 +63,8 @@ const WelcomeHTML = `<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Additional Info</title>
+    <title>Welcome</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="https://tinyurl.com/3rnepj4r">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -108,7 +107,7 @@ const WelcomeHTML = `<!DOCTYPE html>
 </head>
 <body>
     <h1>Additional Information</h1>
-    <p>Welcome {{name}}</p>
+    <p>Welcome {{user_name}}</p>
 </body>
 </html>`;
 
