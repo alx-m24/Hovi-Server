@@ -111,8 +111,6 @@ const WelcomeHTML = `<!DOCTYPE html>
 </body>
 </html>`;
 
-const ADMIN_PASSWORD = "SuperSecretPassword1234";
-
 export default {
     async fetch(request: Request, env: Env) {
         const url = new URL(request.url);
